@@ -1,0 +1,49 @@
+{# about.html #}
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }} - {{ site_name }}{% endblock %}
+
+{% block content %}
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">{{ page_title }}</h1>
+                <p class="lead">{{ page_description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <h2>О нашей компании</h2>
+        <p>Мы специализируемся на создании качественных веб-приложений с использованием современных технологий, таких как Django и Bootstrap. Наша команда объединяет опытных разработчиков, дизайнеров и аналитиков.</p>
+        <p>С момента основания в 2020 году мы успешно реализовали более 100 проектов для клиентов из разных отраслей.</p>
+    </div>
+</div>
+
+<h2 class="mb-4">Наша команда</h2>
+<div class="row">
+    {% for member in team_members %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            {% if member.image %}
+            <img src="{{ member.image }}" class="card-img-top" alt="{{ member.name }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ member.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ member.position }}</h6>
+                <p class="card-text">{{ member.bio }}</p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info">
+            Информация о команде скоро появится.
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
