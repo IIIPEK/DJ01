@@ -58,12 +58,13 @@ DJ01/
 │   │   ├── js/
 │   │   └── img/
 ├   └── templates/        # HTML-шаблоны
-│   │   ├── base.html         # Базовый шаблон
-│   │   ├── index.html        # Главная страница
-│   │   ├── about.html        # О нас
-│   │   ├── services.html     # Услуги 
-│   │   ├── blog.html         # Блог
-│   │   └── contacts.html     # Контакты
+│   │   └── main          # Шаблоны приложения main
+│   │       ├── base.html      # Базовый шаблон
+│   │       ├── index.html     # Главная страница
+│   │       ├── about.html     # О нас
+│   │       ├── services.html  # Услуги 
+│   │       ├── blog.html      # Блог
+│   │       └── contacts.html  # Контакты
 │   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py

@@ -52,18 +52,19 @@ DJ01/
 │   ├── asgi.py
 │   └── wsgi.py
 ├── main/                 # "main" application
-│   └──migrations         # Migration files not used yet.
-│   └──static/            # Static files (CSS, JS, images)
+│   └── migrations        # Migration files not used yet.
+│   └── static/           # Static files (CSS, JS, images)
 │   │   ├── css/
 │   │   ├── js/
 │   │   └── img/
 ├   └── templates/        # HTML templates
-│   │   ├── base.html     # Base template
-│   │   ├── index.html    # Home page
-│   │   ├── about.html    # About us
-│   │   ├── services.html # Services
-│   │   ├── blog.html     # Blog
-│   │   └── contacts.html # Contacts
+│   │   └── main          # main templates
+│   │       ├── base.html     # Base template
+│   │       ├── index.html    # Home page
+│   │       ├── about.html    # About us
+│   │       ├── services.html # Services
+│   │       ├── blog.html     # Blog
+│   │       └── contacts.html # Contacts
 │   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py

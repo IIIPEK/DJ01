@@ -86,7 +86,7 @@ def index(request):
         ],
     })
 
-    return render(request, 'index.html', context)
+    return render(request, 'main/index.html', context)
 
 
 def about(request):
@@ -119,7 +119,7 @@ def about(request):
         ],
     })
 
-    return render(request, 'about.html', context)
+    return render(request, 'main/about.html', context)
 
 
 def services(request):
@@ -154,7 +154,7 @@ def services(request):
         ],
     })
 
-    return render(request, 'services.html', context)
+    return render(request, 'main/services.html', context)
 
 
 def blog(request):
@@ -190,7 +190,7 @@ def blog(request):
         ],
     })
 
-    return render(request, 'blog.html', context)
+    return render(request, 'main/blog.html', context)
 
 
 def contacts(request):
@@ -215,4 +215,4 @@ def contacts(request):
         ],
     })
 
-    return render(request, 'contacts.html', context)
+    return render(request, 'main/contacts.html', context)
