@@ -1,6 +1,6 @@
 {# index.html - наследуется от base.html #}
 {% extends "main/base.html" %}
-
+{% load static %}
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block content %}
@@ -20,7 +20,7 @@
     <div class="col-md-4 mb-4">
         <div class="card h-100">
             {% if item.image %}
-            <img src="{{ item.image }}" class="card-img-top" alt="{{ item.title }}">
+            <img src="{% static item.image %}" class="card-img-top" alt="{{ item.title }}">
             {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ item.title }}</h5>
