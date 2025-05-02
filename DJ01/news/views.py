@@ -15,9 +15,11 @@ def news(request):
 
 def post_detail(request, post_id):
     post = News.objects.get(pk=post_id)
+    posts = News.objects.all()
     context={
         'page_title': post.title,
         'page_description': post.description,
         'post': post,
+        'posts': posts
     }
     return render(request, 'news/post_detail.html', context)
