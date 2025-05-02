@@ -1,14 +1,16 @@
 import json
 from django.core.management.base import BaseCommand
-from your_app.models import News
+from news.models import News
 from django.contrib.auth.models import User
+import os
 
 class Command(BaseCommand):
     help = 'Load posts from a JSON file into the database'
 
-    def handle(self, *args, **kwargs):
+    def handle(self, file_path = '../utils/posts.json',*args, **kwargs):
         # Путь к JSON-файлу
-        file_path = 'posts.json'
+        print(os.listdir())
+        print(file_path)
 
         try:
             # Открываем JSON-файл
