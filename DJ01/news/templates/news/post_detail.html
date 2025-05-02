@@ -1,0 +1,86 @@
+{# news.html #}
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }} - {{ site_name }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'news_index' %}">Новости</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <article>
+        <header class="mb-4">
+          <h1 class="fw-bold mb-1">{{ post.title }}</h1>
+          <div class="text-muted fst-italic mb-2">
+            Опубликовано {{ post.created_at|date:"d.m.Y" }}
+            {% if post.updated_at != post.created_at %}
+            • Обновлено {{ post.updated_at|date:"d.m.Y" }}
+            {% endif %}
+          </div>
+          <div class="d-flex align-items-center mb-3">
+            <div class="rounded-circle bg-secondary bg-opacity-25 me-2 d-flex align-items-center justify-content-center"
+                 style="width: 40px; height: 40px;">
+              <i class="bi bi-person text-secondary" style="font-size: 1.5rem;"></i>
+            </div>
+            <div>
+              <div class="fw-bold">{{ post.author.get_full_name|default:post.author.username }}</div>
+              <div class="text-muted small">Автор</div>
+            </div>
+          </div>
+          <p class="lead">{{ post.description }}</p>
+          <hr class="my-4">
+        </header>
+
+        <section class="mb-5">
+          <div class="fs-5 mb-4 post-content">
+            {{ post.text|linebreaks }}
+          </div>
+        </section>
+      </article>
+
+      <div class="card bg-light">
+        <div class="card-body">
+          <h5>Поделиться:</h5>
+          <div class="d-flex gap-2">
+            <a href="#" class="btn btn-outline-primary">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" class="btn btn-outline-info">
+              <i class="bi bi-twitter"></i>
+            </a>
+            <a href="#" class="btn btn-outline-success">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="#" class="btn btn-outline-secondary">
+              <i class="bi bi-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">Другие новости</div>
+        <div class="list-group list-group-flush">
+          {% for related_post in posts|slice:":5" %}
+            {% if related_post.id != post.id %}
+            <a href="{% url 'post_detail' related_post.id %}" class="list-group-item list-group-item-action">
+              <div class="small text-muted">{{ related_post.created_at|date:"d.m.Y" }}</div>
+              {{ related_post.title }}
+            </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

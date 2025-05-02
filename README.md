@@ -31,15 +31,23 @@ pip install -r requirements.txt
 
 4. Выполните миграции:
 ```
+python manage.py makemigrate
 python manage.py migrate
 ```
+5. Создайте суперпользователя:
+```
+python manage.py createsuperuser
+```
 
-5. Запустите сервер разработки:
+6. Запустите сервер разработки:
 ```
 python manage.py runserver
 ```
 
-6. Откройте в браузере http://127.0.0.1:8000/
+7. Откройте в браузере http://127.0.0.1:8000/admin/
+8. Введите логин и пароль суперпользователя
+9. Создайте пользователей
+10. 
 
 ## Структура проекта
 

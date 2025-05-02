@@ -1,67 +1,14 @@
-# views.py
+# views.py for main app
 import datetime
 from django.shortcuts import render
-
-# Общие данные для всех страниц
-SITE_INFO = {
-    'site_name': 'Проект DJ01',
-    'current_year': datetime.datetime.now().year,
-}
-
-# Базовые пункты меню
-DEFAULT_MENU = [
-    {'title': 'Главная', 'url': '/', 'active': False},
-    {'title': 'О нас', 'url': '/about/', 'active': False},
-    {'title': 'Услуги', 'url': '/services/', 'active': False},
-    {'title': 'Блог', 'url': '/blog/', 'active': False},
-    {'title': 'Контакты', 'url': '/contacts/', 'active': False},
-]
-
-# Данные для футера (общие для всех страниц)
-FOOTER_INFO = {
-    'description': 'Наш проект создан для демонстрации возможностей Django и Bootstrap.',
-    'links': [
-        {'title': 'Политика конфиденциальности', 'url': '/privacy/'},
-        {'title': 'Условия использования', 'url': '/terms/'},
-        {'title': 'Карта сайта', 'url': '/sitemap/'},
-    ],
-    'address': 'ул. Примерная, 12, г. Таллин',
-    'phone': '+372 51234567',
-    'email': 'info@example.com',
-}
-
-
-def get_base_context(active_page):
-    """
-    Создаёт базовый контекст с общими данными для всех страниц.
-    Устанавливает активный пункт меню.
-    """
-    # Копируем меню, чтобы не изменять оригинал
-    menu_items = DEFAULT_MENU.copy()
-
-    # Устанавливаем активный пункт меню
-    for item in menu_items:
-        if item['url'] == active_page:
-            item['active'] = True
-        else:
-            item['active'] = False
-
-    # Формируем базовый контекст
-    context = {
-        **SITE_INFO,
-        'menu_items': menu_items,
-        'footer': FOOTER_INFO,
-    }
-
-    return context
 
 
 def index(request):
     # Получаем базовый контекст с активной главной страницей
-    context = get_base_context('/')
+
 
     # Добавляем специфичные для главной страницы данные
-    context.update({
+    context={
         'page_title': 'Главная страница',
         'page_description': 'Добро пожаловать на наш сайт! Здесь вы найдете много полезной информации.',
         'content_items': [
@@ -84,17 +31,16 @@ def index(request):
                 'url': '/item/3/',
             },
         ],
-    })
+    }
 
     return render(request, 'main/index.html', context)
 
 
 def about(request):
     # Получаем базовый контекст с активной страницей "О нас"
-    context = get_base_context('/about/')
 
     # Добавляем специфичные данные
-    context.update({
+    context={
         'page_title': 'О нас',
         'page_description': 'Информация о нашей компании и команде.',
         'team_members': [
@@ -117,17 +63,16 @@ def about(request):
                 'image': 'img/team3.jpg',
             },
         ],
-    })
+    }
 
     return render(request, 'main/about.html', context)
 
 
 def services(request):
     # Получаем базовый контекст с активной страницей "Услуги"
-    context = get_base_context('/services/')
 
     # Добавляем специфичные данные
-    context.update({
+    context={
         'page_title': 'Услуги',
         'page_description': 'Услуги, которые мы предлагаем нашим клиентам.',
         'services_list': [
@@ -152,17 +97,16 @@ def services(request):
                 'icon': 'bi-gear',
             },
         ],
-    })
+    }
 
     return render(request, 'main/services.html', context)
 
 
 def blog(request):
     # Получаем базовый контекст с активной страницей "Блог"
-    context = get_base_context('/blog/')
 
     # Добавляем специфичные данные
-    context.update({
+    context={
         'page_title': 'Блог',
         'page_description': 'Последние новости и статьи нашей компании.',
         'blog_posts': [
@@ -188,23 +132,22 @@ def blog(request):
                 'url': '/blog/post3/',
             },
         ],
-    })
+    }
 
     return render(request, 'main/blog.html', context)
 
 
 def contacts(request):
-    # Получаем базовый контекст с активной страницей "Контакты"
-    context = get_base_context('/contacts/')
+    from utils.context_processors import FOOTER_INFO
 
     # Данные для страницы контактов
-    context.update({
+    context={
         'page_title': 'Контакты',
         'page_description': 'Как с нами связаться.',
         'contact_info': {
-            'address': context['footer']['address'],
-            'phone': context['footer']['phone'],
-            'email': context['footer']['email'],
+            'address': FOOTER_INFO['address'],
+            'phone': FOOTER_INFO['phone'],
+            'email': FOOTER_INFO['email'],
             'working_hours': 'Пн-Пт: 9:00 - 18:00',
         },
         'social_media': [
@@ -213,6 +156,6 @@ def contacts(request):
             {'name': 'Instagram', 'url': 'https://instagram.com/', 'icon': 'bi-instagram'},
             {'name': 'LinkedIn', 'url': 'https://linkedin.com/', 'icon': 'bi-linkedin'},
         ],
-    })
+    }
 
     return render(request, 'main/contacts.html', context)
