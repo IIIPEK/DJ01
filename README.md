@@ -14,7 +14,7 @@ DJ03 - это демонстрационный проект на Django, пок�
 
 1. Склонируйте репозиторий:
 ```bash
-git clone https://github.com/yourusername/dj01.git
+git clone https://github.com/IIIPEK/DJ01/tree/DJ03
 cd dj01
 ```
 
