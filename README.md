@@ -51,7 +51,7 @@ python manage.py runserver
 py .\manage.py shell
 ```
 ```python
->>> import utils.user_info 
+import utils.user_info 
 ```
 будет выведено:
 ```python
@@ -63,8 +63,8 @@ ID: 3, Username: bloger
 11. Замените идентификаторы пользователей в posts.json в каталоге utils на идентификаторы, полученные в предыдущем пункте
 12. В терминале выполните команду 
 ```python
->>>  from utils.load_posts import Command
->>> Command().handle(file_path='utils/posts.json')
+from utils.load_posts import Command
+Command().handle(file_path='utils/posts.json')
 ```
 должно быть выведено:
 ```python
