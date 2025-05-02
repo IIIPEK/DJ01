@@ -52,7 +52,13 @@ def get_base_context(request):
 
     # Set active menu item
     for item in menu_items:
-        item['active'] = ( request.path.startswith(item['url']))
+        if item['url'] == '/':
+            if request.path == '/':
+                item['active'] = True
+            else:
+                item['active'] = False
+        else:
+            item['active'] = ( request.path.startswith(item['url']))
 
 
     # Create base context
